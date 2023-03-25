@@ -10,8 +10,11 @@ let struct Entity {
     value: String 
 }
 
-fn insert_entity(passed_value: &str) {
+fn insert_entity(passed_value: &str) -> Result<()> {
     let new_record = { key: Uuid::new_v4(), value String::from(passed_value)}
-    let encoded: Vec<u8> = bincode::serialize(&new_record).unwrap()
-    //continiue
+    //let encoded: Vec<u8> = bincode::serialize(&new_record).unwrap()
+    let mut entity_file = File::open(./data/entity)?;
+    let buffer = serde_bincode::serialize(&new_record)?;
+    entity_file.write_all(&buffer[..])?;
+    Ok(())
 }
