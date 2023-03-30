@@ -1,4 +1,4 @@
-fn command_handler(input: &str) {
+pub fn command_handler(input: &str) {
     // Split the input string into two parts at the first space character
     let (command, args) = match input.find(' ') {
         Some(i) => input.split_at(i),
